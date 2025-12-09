@@ -26,6 +26,7 @@ export function useSignUp() {
         try {
             const res = await signUpAction(data);
 
+            console.log(res);
             if (!res.success) {
                 // server returned validation errors
                 setServerError("Please fix the highlighted errors");
