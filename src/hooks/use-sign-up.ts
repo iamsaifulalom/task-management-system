@@ -1,6 +1,6 @@
 "use client";
 
-import { signUpAction } from "@/app/actions/auth";
+import { signUpAction } from "@/actions/action.auth";
 import {
     signUpDefaultValues,
     SignUpFormValues,
@@ -26,7 +26,7 @@ export function useSignUp() {
         try {
             const res = await signUpAction(data);
 
-            if (res.error) {
+            if (!res.success) {
                 // server returned validation errors
                 setServerError("Please fix the highlighted errors");
             }
