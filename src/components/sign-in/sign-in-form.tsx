@@ -3,35 +3,35 @@
 import { Button } from '../ui/button'
 import InputField from '../ui/input-field'
 import { Form } from '../ui/form'
+import { Spinner } from '../ui/spinner'
 import GoogleIcon from '@/icons/google-icon'
-import { useSignUp } from '@/hooks/use-sign-up'
 import Link from 'next/link'
 import { authForms } from '@/forms/forms.auth'
+import { useSignIn } from '@/hooks/use-sign-in'
 
-export default function SignUpForm() {
-    const { form, handleSubmit, isLoading } = useSignUp();
+export default function SignInForm() {
+    const { form, handleSubmit, isLoading } = useSignIn();
 
     return (
         <div className='w-full lg:px-20 flex flex-col space-y-4 mb-10'>
 
             {/* sign in page link to go sign in page if user sign up already */}
-            <Link href="/sign-in" className='inline-block ml-auto'>
+            <Link href="/sign-up" className='inline-block'>
                 <Button
                     variant="outline"
                     className="text-[#3754DB] hover:text-[#3754DB] border-[#3754DB]"
                 >
-                    Sign in
+                    Create a new account
                 </Button>
             </Link>
 
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(handleSubmit)} className='text-foreground flex flex-col flex-1 justify-center space-y-4 max-w-sm font-normal'>
+                <form onSubmit={form.handleSubmit(handleSubmit)} className='text-foreground flex flex-col flex-1 justify-center space-y-4 font-normal'>
                     {/* sign up header with descriptions */}
 
                     <h1 className='text-[32px] text-foreground font-bold'>
-                        Create an Account
+                        Wellcome back!
                     </h1>
-                    <p className='text-sm text-muted-foreground -mt-4'>It’s Simpe and Easy!!</p>
 
                     {/* sign in with google button */}
 
@@ -40,12 +40,12 @@ export default function SignUpForm() {
                     </Button>
 
                     {/* form fields for sign up */}
-                    {authForms.signUp.map((item) => (
+                    {authForms.signIn.map((item) => (
                         <InputField key={item.name} form={form} {...item} />
                     ))}
 
                     <Button disabled={isLoading} size="lg" type='submit'>
-                        {isLoading && "loading.."} Sign up
+                        {isLoading && <Spinner />} Sign up
                     </Button>
                 </form>
             </Form>

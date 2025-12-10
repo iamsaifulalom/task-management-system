@@ -1,7 +1,7 @@
 // schemas/loginSchema.ts
 import { z } from "zod";
 
-export const loginSchema = z.object({
+export const signInSchema = z.object({
   email: z
     .string()
     .min(1, "Email is required")
@@ -12,4 +12,9 @@ export const loginSchema = z.object({
 });
 
 // TypeScript type inferred from schema
-export type LoginFormValues = z.infer<typeof loginSchema>;
+export type SignInFormValues = z.infer<typeof signInSchema>;
+
+export const signInDefaultValues = {
+  email: "test@user.com",
+  password: "test123456"
+}
